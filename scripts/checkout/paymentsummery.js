@@ -3,7 +3,7 @@ import { formatCurrency } from "../utils/formatCurrency.js";
 import { getDeliveryOption } from "../../data/deliveryOptions.js";
 import { getProduct } from "../../data/products.js";
 export function renderPaymentSummery() {
-  console.log("Render Payments Summery");
+ 
   let paymentHTML = "";
 
   let productPriceCents = 0;
@@ -53,5 +53,5 @@ export function renderPaymentSummery() {
 		</button>
 	`;
   document.querySelector(".js-payment-summary").innerHTML = paymentHTML;
-  console.log(paymentHTML);
+ 
 }
