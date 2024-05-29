@@ -1,6 +1,8 @@
-import { products } from "../data/products.js";
+import { products, loadProducts} from "../data/products.js";
 import { formatCurrency } from "./utils/formatCurrency.js";
 import { cart, updateQuentity, calculateCartQuantity } from "../data/cart.js";
+
+loadProducts(renderProductsGrid)
 
 function renderProductsGrid() {
   let productsHtml = "";
@@ -83,4 +85,3 @@ function renderProductsGrid() {
     });
   });
 }
-renderProductsGrid();

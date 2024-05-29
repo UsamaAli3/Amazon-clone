@@ -145,7 +145,7 @@ export function renderOrderSummery() {
     updateCartQuantity();
   });
 
-  function updateCartQuantity() {
+   function updateCartQuantity() {
     const cartQuantity = calculateCartQuantity();
     document.querySelector(
       ".js-return-to-home-link"
