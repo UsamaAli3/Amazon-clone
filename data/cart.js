@@ -43,9 +43,7 @@ export function removeItem(productId) {
   cart.forEach((cartItem) => {
     if (cartItem.productId !== productId) {
       newCart.push(cartItem);
-      console.log(cartItem);
     }
-    console.log(productId);
   });
   cart = newCart;
   saveToStorage();
@@ -83,3 +81,25 @@ export function updateDeliveryOption(productId, deliveryOptionId) {
   matchingProduct.deliveryOptionId = deliveryOptionId;
   saveToStorage();
 }
+
+/*export async function loadCartFetch(fun) {
+  const data = await fetch("https://supersimplebackend.dev/cart");
+  console.log(data);
+  fun();
+}*/
+
+export function loadCartFetch(fun) {
+  const xhr = new XMLHttpRequest();
+  xhr.addEventListener("load", () => {
+    console.log(xhr.response);
+    fun();
+  });
+
+  xhr.open("GET", "https://supersimplebackend.dev/cart");
+  xhr.send();
+}
+// export function loadCartFetch(fun) {
+//   fetch("https://supersimplebackend.dev/cart").then((r) => {
+//     console.log(r);
+//   });
+// }

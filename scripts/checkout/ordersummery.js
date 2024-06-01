@@ -135,8 +135,6 @@ export function renderOrderSummery() {
     btn.addEventListener("click", () => {
       const productId = btn.dataset.productId;
       removeItem(productId);
-      console.log(productId);
-
       document.querySelector(`.js-cart-item-container-${productId}`).remove();
       renderOrderSummery();
       renderPaymentSummery();
@@ -145,7 +143,7 @@ export function renderOrderSummery() {
     updateCartQuantity();
   });
 
-   function updateCartQuantity() {
+  function updateCartQuantity() {
     const cartQuantity = calculateCartQuantity();
     document.querySelector(
       ".js-return-to-home-link"
