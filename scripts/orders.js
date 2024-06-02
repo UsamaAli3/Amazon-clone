@@ -6,8 +6,6 @@ import { getProduct, loadProductsFetch } from "../data/products.js";
 loadProductsFetch(renderordersGrid);
 
 function renderordersGrid() {
-  console.log(orders);
-
   let orderHTML = "";
 
   orders.forEach((order) => {
@@ -44,8 +42,6 @@ function renderordersGrid() {
       order.products.forEach((productDetails) => {
         const productId = productDetails.productId;
         let matchingProduct = getProduct(productId);
-
-        console.log(matchingProduct);
 
         productsListHTML += `<div class="product-image-container">
     <img src="${matchingProduct.image}">
@@ -88,5 +84,4 @@ function renderordersGrid() {
     const dateString = dayjs(date).format("MMMM D");
     return dateString;
   }
-  console.log("hh");
 }
