@@ -3,7 +3,7 @@ import { formatCurrency } from "../utils/formatCurrency.js";
 import { getDeliveryOption } from "../../data/deliveryOptions.js";
 import { getProduct } from "../../data/products.js";
 import { calculateCartQuantity } from "../../data/cart.js";
-import { addOrder } from "../../data/order.js";
+import { addOrder, orders } from "../../data/order.js";
 export function renderPaymentSummery() {
   let paymentHTML = "";
 
@@ -80,3 +80,4 @@ export function renderPaymentSummery() {
       window.location.href = "orders.html";
     });
 }
+console.log(orders)
