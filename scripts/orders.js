@@ -2,6 +2,7 @@ import { orders } from "../data/order.js";
 import { formatCurrency } from "../scripts/utils/formatCurrency.js";
 import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js";
 import { getProduct, loadProductsFetch } from "../data/products.js";
+import { searchProduct } from "./search.js";
 
 loadProductsFetch(renderordersGrid);
 
@@ -79,7 +80,10 @@ function renderordersGrid() {
       return productsListHTML;
     }
   });
+  searchProduct();
+
   document.querySelector(".js-orders-grid").innerHTML = orderHTML;
+
   function convertDate(date) {
     const dateString = dayjs(date).format("MMMM D");
     return dateString;

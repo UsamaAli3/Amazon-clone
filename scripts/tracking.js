@@ -2,6 +2,7 @@ import { calculateCartQuantity } from "../data/cart.js";
 import { getOrder } from "../data/order.js";
 import { loadProductsFetch, getProduct } from "../data/products.js";
 import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js";
+import { searchProduct } from "./search.js";
 
 loadProductsFetch(renderTracking);
 
@@ -32,7 +33,7 @@ function renderTracking() {
     (currentTime.diff(orderTime) / deliveryTime.diff(orderTime)) * 100;
   const deliveredMessage =
     currentTime > deliveryTime ? "Delivered on" : "Arriving on";
-
+  searchProduct();
   calculateCartQuantity();
 
   const trackingHTML = `

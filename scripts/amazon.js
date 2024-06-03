@@ -1,13 +1,43 @@
 import { products, loadProductsFetch } from "../data/products.js";
 import { formatCurrency } from "./utils/formatCurrency.js";
 import { updateQuentity, calculateCartQuantity } from "../data/cart.js";
+import { searchProduct } from "./search.js";
 
 loadProductsFetch(renderProductsGrid);
-
 function renderProductsGrid() {
-  let productsHtml = "";
+  const url = new URL(window.location.href);
+  const search = url.searchParams.get("search");
 
-  products.forEach((product) => {
+  let productsHtml = ``;
+  let filterdProducts = products;
+
+  // If a search exists in the URL parameters,
+  // filter the products that match the search.
+  if (search) {
+    filterdProducts = products.filter((product) => {
+      let matchingKeywords = false;
+      console.log(product.keywords);
+      product.keywords.forEach((keyword) => {
+        if (keyword.toLowerCase().includes(search.toLowerCase())) {
+          matchingKeywords = true;
+        }
+      });
+
+      //if matchingKeywords true or product name (insesnitive) return the product
+      return (
+        matchingKeywords ||
+        product.name.toLowerCase().includes(search.toLowerCase())
+      );
+    });
+  }
+
+  if (filterdProducts == "") {
+    productsHtml = `
+      <div class="empty-results-message">No products matched your search</div>
+    `;
+  }
+
+  filterdProducts.forEach((product) => {
     productsHtml += `
 		<div class="product-container">
           <div class="product-image-container">
@@ -64,12 +94,13 @@ function renderProductsGrid() {
 
   document.querySelector(".products-grid").innerHTML = productsHtml;
 
+  searchProduct();
+
   const cartQuantity = calculateCartQuantity();
   document.querySelector(".js-cart-quantity").innerHTML = cartQuantity;
 
   document.querySelectorAll(".js-add-to-cart").forEach((button) => {
     button.addEventListener("click", () => {
-
       const productId = button.dataset.productId;
       updateQuentity(productId);
       calculateCartQuantity();
