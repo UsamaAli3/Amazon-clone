@@ -14,12 +14,15 @@ export function updateQuentity(productId) {
     }
   });
 
+  const quantity = Number(
+    document.querySelector(`.js-quantity-selector-${productId}`).value
+  );
   if (matchingItem) {
-    matchingItem.quantity += 1;
+    matchingItem.quantity += quantity;
   } else {
     cart.push({
       productId: productId,
-      quantity: 1,
+      quantity: quantity,
       deliveryOptionId: "1",
     });
   }
